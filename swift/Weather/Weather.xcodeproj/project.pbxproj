@@ -31,6 +31,8 @@
 		A024AE521B12244D0051AC14 /* tstorm1_night.png in Resources */ = {isa = PBXBuildFile; fileRef = A024AE421B12244D0051AC14 /* tstorm1_night.png */; };
 		A024AE531B12244D0051AC14 /* tstorm3.png in Resources */ = {isa = PBXBuildFile; fileRef = A024AE431B12244D0051AC14 /* tstorm3.png */; };
 		A024AE551B1229180051AC14 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A024AE541B1229180051AC14 /* CoreLocation.framework */; };
+		A0440A8B1B137A6C0095E964 /* background_summer.png in Resources */ = {isa = PBXBuildFile; fileRef = A0440A891B137A6C0095E964 /* background_summer.png */; };
+		A0440A8C1B137A6C0095E964 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A0440A8A1B137A6C0095E964 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		A024AE421B12244D0051AC14 /* tstorm1_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tstorm1_night.png; sourceTree = "<group>"; };
 		A024AE431B12244D0051AC14 /* tstorm3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tstorm3.png; sourceTree = "<group>"; };
 		A024AE541B1229180051AC14 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A0440A891B137A6C0095E964 /* background_summer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_summer.png; sourceTree = "<group>"; };
+		A0440A8A1B137A6C0095E964 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		A0914D981B12301800B33633 /* Weather-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Weather-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +174,8 @@
 		A024AE331B12244D0051AC14 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A0440A891B137A6C0095E964 /* background_summer.png */,
+				A0440A8A1B137A6C0095E964 /* background.png */,
 				A024AE341B12244D0051AC14 /* Cloud-Refresh.png */,
 				A024AE351B12244D0051AC14 /* cloudy2.png */,
 				A024AE361B12244D0051AC14 /* cloudy2_night.png */,
@@ -284,6 +290,7 @@
 				A024AE521B12244D0051AC14 /* tstorm1_night.png in Resources */,
 				A024AE1E1B1220A80051AC14 /* LaunchScreen.xib in Resources */,
 				A024AE4A1B12244D0051AC14 /* light_rain.png in Resources */,
+				A0440A8B1B137A6C0095E964 /* background_summer.png in Resources */,
 				A024AE511B12244D0051AC14 /* tstorm1.png in Resources */,
 				A024AE531B12244D0051AC14 /* tstorm3.png in Resources */,
 				A024AE491B12244D0051AC14 /* fog_night.png in Resources */,
@@ -295,6 +302,7 @@
 				A024AE461B12244D0051AC14 /* cloudy2_night.png in Resources */,
 				A024AE4E1B12244D0051AC14 /* snow5.png in Resources */,
 				A024AE471B12244D0051AC14 /* dunno.png in Resources */,
+				A0440A8C1B137A6C0095E964 /* background.png in Resources */,
 				A024AE451B12244D0051AC14 /* cloudy2.png in Resources */,
 				A024AE481B12244D0051AC14 /* fog.png in Resources */,
 				A024AE4B1B12244D0051AC14 /* overcast.png in Resources */,

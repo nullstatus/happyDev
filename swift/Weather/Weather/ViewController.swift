@@ -15,6 +15,9 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var temperature: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loading: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,6 +25,11 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        self.loadingIndicator.startAnimating()
+        
+        let background = UIImage(named: "background")
+        self.view.backgroundColor = UIColor(patternImage: background!)
         //if(ios8()){
             locationManager.requestAlwaysAuthorization()
         //}
@@ -41,6 +49,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             locationManager.stopUpdatingLocation()
         }
     }
+    
     func updateWeatherInfo(latitude:CLLocationDegrees,longitude:CLLocationDegrees){
         let manager = AFHTTPRequestOperationManager()
         let url = "http://api.openweathermap.org/data/2.5/weather"
@@ -57,7 +66,12 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
                 println("error: "+error.localizedDescription)
         })
     }
+    
     func updateUISuccess(jsonResult:NSDictionary!){
+        self.loadingIndicator.hidden = true
+        self.loadingIndicator.stopAnimating()
+        self.loading.text = nil
+        
         if let tempResult = jsonResult["main"]?["temp"] as? Double{
             var temperature: Double
             if(jsonResult["sys"]?["country"] as! String == "US"){
@@ -71,12 +85,68 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             var name = jsonResult["name"] as! String
             self.location.text = "\(name)"
             self.location.font = UIFont.boldSystemFontOfSize(25)
-        }else{
             
+            var condition = (jsonResult["weather"] as! NSArray)[0]["id"] as! Int
+            var sunrise = jsonResult["sys"]?["sunrise"] as! Double
+            var sunset = jsonResult["sys"]?["sunset"] as! Double
+            
+            var nightTime = false
+            var now = NSDate().timeIntervalSince1970
+            if(now < sunrise || now > sunset){
+                nightTime = true
+            }
+            self.updateWeatherIcon(condition,nightTime:nightTime)
+        }else{
+            self.loading.text = "获取不到天气信息"
+        }
+    }
+    
+    func updateWeatherIcon(condition:Int,nightTime:Bool){
+        if(condition < 300){
+            if nightTime{
+                self.icon.image = UIImage(named: "tstorm1_night")
+            }else{
+                self.icon.image = UIImage(named: "tstorm1")
+            }
+        }else if(condition < 500){
+            self.icon.image = UIImage(named: "light_rain")
+        }else if(condition < 600){
+            self.icon.image = UIImage(named: "shower3")
+        }else if(condition < 700){
+            self.icon.image = UIImage(named: "snow4")
+        }else if(condition < 771){
+            if nightTime{
+                self.icon.image = UIImage(named: "fog_night")
+            }else{
+                self.icon.image = UIImage(named: "fog")
+            }
+        }else if(condition == 800){
+            if nightTime{
+                self.icon.image = UIImage(named: "sunny_night")
+            }else{
+                self.icon.image = UIImage(named: "sunny")
+            }
+        }else if(condition < 804){
+            if nightTime{
+                self.icon.image = UIImage(named: "cloudy2_night")
+            }else{
+                self.icon.image = UIImage(named: "cloudy2")
+            }
+        }else if(condition == 804){
+            self.icon.image = UIImage(named: "overcast")
+        }else if((condition >= 900 && condition < 903)||(condition > 904 && condition < 1000)){
+            self.icon.image = UIImage(named: "tstorm3")
+        }else if(condition == 903){
+            self.icon.image = UIImage(named: "snow5")
+        }else if(condition == 904){
+            self.icon.image = UIImage(named: "sunny")
+        }else{
+            self.icon.image = UIImage(named: "dunno")
         }
     }
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println(error)
+        self.loading.text = "地理位置信息不可用"
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
