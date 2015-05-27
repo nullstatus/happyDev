@@ -16,6 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        //创建窗口
+        self.window = UIWindow()
+        self.window?.frame = UIScreen.mainScreen().bounds
+        //设置根控制器
+        var tabbar = UITabBarController()
+        self.window?.rootViewController = tabbar
+        //设置tabbar的子控制器
+        var vc1 = UIViewController()
+        vc1.view.backgroundColor = UIColor.blueColor()
+        vc1.tabBarItem.title = "首页"
+        vc1.tabBarItem.image = UIImage(named: "tabbar_home")
+        vc1.tabBarItem.selectedImage = UIImage(named: "tabbar_home_selected")
+        var vc2 = UIViewController()
+        vc2.view.backgroundColor = UIColor.redColor()
+        vc2.tabBarItem.title = "消息"
+        tabbar.viewControllers = [vc1,vc2]
+       // tabbar.add
+        //显示窗口
+        self.window?.makeKeyAndVisible()
         return true
     }
 
